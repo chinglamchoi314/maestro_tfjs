@@ -34950,6 +34950,8 @@ parcelRequire = function(e, r, t, n) {
                             decodingMethod: "single-person"
                         });
                         d = d.concat(e), i = +y.singlePoseDetection.minPoseConfidence, c = +y.singlePoseDetection.minPartConfidence;
+                        document.getElementById('log').innerHTML=d;
+                        
                         break;
                     case "multi-pose":
                         let n = await y.net.estimatePoses(t, {
@@ -34959,7 +34961,8 @@ parcelRequire = function(e, r, t, n) {
                             scoreThreshold: y.multiPoseDetection.minPartConfidence,
                             nmsRadius: y.multiPoseDetection.nmsRadius
                         });
-                        d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence
+                        d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
+                        document.getElementById('log').innerHTML=d;
                 }
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
