@@ -3,7 +3,7 @@
   <head>
     <title>PoseNet - Maestro</title>
     <script type="text/javascript">
-       var poseforccl;
+       var poseforccl=[];
     </script>
     <style>
       .footer{position:fixed;left:0;bottom:0;width:100%;color:#000}
@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body> 
-    <p id="moreloglog">10:32pm</p>
+    <p id="moreloglog">10:49pm</p>
     <div id="info" style="display:none"> </div> 
     <div id="loading" style="display:flex"> 
       <div class="spinner-text"> Loading PoseNet 2 model... </div> 
@@ -25,7 +25,7 @@
     </div> 
     <div id="main" style="display:none"> 
       <video id="video" playsinline="" style="-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);transform:scaleX(-1);display:none;"> </video> 
-      <canvas id="output"> </canvas>
+      <canvas id="output" width="512" height="384"> </canvas>
     </div> 
     <div class="footer"> 
       <div class="footer-text"> 
@@ -34,9 +34,9 @@
         <p> PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image. <br> <br> The <strong>output stride</strong> and <strong>input resolution</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed. </p> 
       </div> 
     </div> 
-    
-    <script src="./camera.js"></script>
     <script src="./read.js"></script>
+    <script src="./camera.js"></script>
+    
     <img src="https://previews.123rf.com/images/thoermer/thoermer1703/thoermer170300126/74586583-young-woman-doing-a-taichi-or-qi-gong-exercise-at-a-lake.jpg" onclick="abc()">
 <!--     <button onhover="document.getElementById" onclick="document.getElementById('morelog').innerHTML='1234'">update mask</button> -->
   </body>
