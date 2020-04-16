@@ -34943,10 +34943,10 @@ parcelRequire = function(e, r, t, n) {
                     quantBytes: y.changeToQuantBytes
                 }), (0, o.toggleLoadingUI)(!1), y.quantBytes = y.changeToQuantBytes, y.changeToQuantBytes = null), l.begin();
                 let i, c, d = [];
-                var trash=document.getElementById("output").getContext("2d");
-                var trash2=document.getElementById("output");
+                let trash=document.getElementById("output").getContext("2d");
+                let trash2=document.getElementById("output");
                 switch (y.algorithm) {
-                    var ccl;
+                    let ccl;
                     poseforccl=[];
                     case "single-pose":
                         const e = await y.net.estimatePoses(t, {
@@ -34954,17 +34954,17 @@ parcelRequire = function(e, r, t, n) {
                             decodingMethod: "single-person"
                         });
                         d = d.concat(e), i = +y.singlePoseDetection.minPoseConfidence, c = +y.singlePoseDetection.minPartConfidence;
-                        //document.getElementById('log').innerHTML=JSON.stringify(e[0]);
+                        document.getElementById('log').innerHTML=JSON.stringify(e[0]);
 
-                        ccl=trash.getImageData(0,0,trash2.width,trash2.height);
-                        for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
+                        //ccl=trash.getImageData(0,0,trash2.width,trash2.height);
+                        /*for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                           //255,255,0?
                           if(ccl.data[kxc*4]==0 && ccl.data[kxc*4+1]==255 && ccl.data[kxc*4+2]==255){
                             poseforccl.push(1);
                           }else{
                             poseforccl.push(0);
                           }
-                        }
+                        }*/
 
                         break;
                     case "multi-pose":
@@ -34976,16 +34976,16 @@ parcelRequire = function(e, r, t, n) {
                             nmsRadius: y.multiPoseDetection.nmsRadius
                         });
                         d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
-                        //document.getElementById('log').innerHTML=JSON.stringify(n[0]);
-                        ccl=trash.getImageData(0,0,trash2.width,trash2.height);
-                        for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
+                        document.getElementById('log').innerHTML=JSON.stringify(n[0]);
+                        //ccl=trash.getImageData(0,0,trash2.width,trash2.height);
+                        /*for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                           //255,255,0?
                           if(ccl.data[kxc*4]==0 && ccl.data[kxc*4+1]==255 && ccl.data[kxc*4+2]==255){
                             poseforccl.push(1);
                           }else{
                             poseforccl.push(0);
                           }
-                        }
+                        }*/
                 }
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
