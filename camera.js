@@ -24085,10 +24085,10 @@ parcelRequire = function(e, r, t, n) {
                     h = document.createElement("canvas");
                 h.width = r, h.height = f, h.style.cssText = "width:80px;height:48px";
                 var v = h.getContext("2d");
-                return v.font = "bold " + 9 * o + "px Helvetica,Arial,sans-serif", v.textBaseline = "top", v.fillStyle = n, v.fillRect(0, 0, r, f), v.fillStyle = t, v.fillText(e, c, d), v.fillRect(p, u, s, m), v.fillStyle = n, v.globalAlpha = .9, v.fillRect(p, u, s, m), {
+                return v.font = "bold " + 9 * o + "px Helvetica,Arial,sans-serif", v.textBaseline = "top", v.fillStyle = "#0edfe3", v.fillRect(0, 0, r, f), v.fillStyle = "#0edfe3", v.fillText(e, c, d), v.fillRect(p, u, s, m), v.fillStyle = "#0edfe3", v.globalAlpha = .9, v.fillRect(p, u, s, m), {
                     dom: h,
                     update: function(f, y) {
-                        l = Math.min(l, f), i = Math.max(i, f), v.fillStyle = n, v.globalAlpha = 1, v.fillRect(0, 0, r, u), v.fillStyle = t, v.fillText(a(f) + " " + e + " (" + a(l) + "-" + a(i) + ")", c, d), v.drawImage(h, p + o, u, s - o, m, p, u, s - o, m), v.fillRect(p + s - o, u, o, m), v.fillStyle = n, v.globalAlpha = .9, v.fillRect(p + s - o, u, o, a((1 - f / y) * m))
+                        l = Math.min(l, f), i = Math.max(i, f), v.fillStyle = "#0edfe3", v.globalAlpha = 1, v.fillRect(0, 0, r, u), v.fillStyle = "#0edfe3", v.fillText(a(f) + " " + e + " (" + a(l) + "-" + a(i) + ")", c, d), v.drawImage(h, p + o, u, s - o, m, p, u, s - o, m), v.fillRect(p + s - o, u, o, m), v.fillStyle = "#0edfe3", v.globalAlpha = .9, v.fillRect(p + s - o, u, o, a((1 - f / y) * m))
                     }
                 }
             }, e
@@ -34675,17 +34675,18 @@ parcelRequire = function(e, r, t, n) {
         }
 
         function h(t, e, n, o, r) {
-            t.beginPath(), t.arc(n, e, o, 0, 2 * Math.PI), t.fillStyle = r, t.fill()
+            t.beginPath(), t.arc(n, e, o, 0, 2 * Math.PI), t.fillStyle = "#0edfe3", t.fill()
         }
 
         function w([t, e], [n, o], r, s, i) {
-            i.beginPath(), i.moveTo(e * s, t * s), i.lineTo(o * s, n * s), i.lineWidth = a, i.strokeStyle = r, i.stroke()
+            i.beginPath(), i.moveTo(e * s, t * s), i.lineTo(o * s, n * s), i.lineWidth = a, i.strokeStyle = "#0edfe3", i.stroke()
         }
 
         function v(e, n, o, s = 1) {
             t.getAdjacentKeyPoints(e, n).forEach(t => {
                 w(m(t[0].position), m(t[1].position), r, s, o)
             })
+            document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+"v";
         }
 
         function P(t, e, n, o = 1) {
@@ -34702,7 +34703,7 @@ parcelRequire = function(e, r, t, n) {
 
         function b(e, n) {
             const o = t.getBoundingBox(e);
-            n.rect(o.minX, o.minY, o.maxX - o.minX, o.maxY - o.minY), n.strokeStyle = s, n.stroke()
+            n.rect(o.minX, o.minY, o.maxX - o.minX, o.maxY - o.minY), n.strokeStyle = "#0edfe3", n.stroke()
         }
         async function B(t, e) {
             const [n, o] = t.shape, r = new ImageData(o, n), s = await t.data();
@@ -34727,7 +34728,7 @@ parcelRequire = function(e, r, t, n) {
             for (let s = 0; s < r.length; s += 2) {
                 const e = r[s],
                     a = r[s + 1];
-                0 !== a && 0 !== e && (t.beginPath(), t.arc(a, e, n, 0, 2 * Math.PI), t.fillStyle = o, t.fill())
+                0 !== a && 0 !== e && (t.beginPath(), t.arc(a, e, n, 0, 2 * Math.PI), t.fillStyle = "#0edfe3", t.fill())
             }
         }
 
@@ -34735,9 +34736,11 @@ parcelRequire = function(e, r, t, n) {
             const i = t.singlePose.getOffsetPoints(e, o, n),
                 u = e.buffer().values,
                 l = i.buffer().values;
+            document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+"k";
             for (let t = 0; t < u.length; t += 2) {
                 w([u[t] * o, u[t + 1] * o], [l[t], l[t + 1]], r, s, a)
             }
+            // anchor k
         }
     }, {
         "@tensorflow-models/posenet": "yqJr",
@@ -34954,17 +34957,19 @@ parcelRequire = function(e, r, t, n) {
                             decodingMethod: "single-person"
                         });
                         d = d.concat(e), i = +y.singlePoseDetection.minPoseConfidence, c = +y.singlePoseDetection.minPartConfidence;
-                        document.getElementById('log').innerHTML=JSON.stringify(e[0]);
+
 
                         ccl=trash.getImageData(0,0,trash2.width,trash2.height);
                         for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                           //255,255,0?
-                          if(ccl.data[kxc*4]==0 && ccl.data[kxc*4+1]==255 && ccl.data[kxc*4+2]==255){
+                          /*if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
                             poseforccl.push(1);
                           }else{
                             poseforccl.push(0);
-                          }
+                          }*/
+                          poseforccl.push(ccl.data[kxc*4]);
                         }
+                        document.getElementById('log').innerHTML=poseforccl;
 
                         break;
                     case "multi-pose":
@@ -34976,16 +34981,17 @@ parcelRequire = function(e, r, t, n) {
                             nmsRadius: y.multiPoseDetection.nmsRadius
                         });
                         d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
-                        document.getElementById('log').innerHTML=JSON.stringify(n[0]);
                         ccl=trash.getImageData(0,0,trash2.width,trash2.height);
                         for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                           //255,255,0?
-                          if(ccl.data[kxc*4]==0 && ccl.data[kxc*4+1]==255 && ccl.data[kxc*4+2]==255){
+                          /*if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
                             poseforccl.push(1);
                           }else{
                             poseforccl.push(0);
-                          }
+                          }*/
+                          poseforccl.push(ccl.data[kxc*4]);
                         }
+                        document.getElementById('log').innerHTML=poseforccl;
                 }
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
