@@ -34946,10 +34946,6 @@ parcelRequire = function(e, r, t, n) {
                     quantBytes: y.changeToQuantBytes
                 }), (0, o.toggleLoadingUI)(!1), y.quantBytes = y.changeToQuantBytes, y.changeToQuantBytes = null), l.begin();
                 let i, c, d = [];
-                    let ccl;
-                    poseforccl=[];
-                let trash=document.getElementById("output").getContext("2d");
-                let trash2=document.getElementById("output");
                 switch (y.algorithm) {
                     case "single-pose":
                         const e = await y.net.estimatePoses(t, {
@@ -34957,19 +34953,6 @@ parcelRequire = function(e, r, t, n) {
                             decodingMethod: "single-person"
                         });
                         d = d.concat(e), i = +y.singlePoseDetection.minPoseConfidence, c = +y.singlePoseDetection.minPartConfidence;
-
-
-                        ccl=trash.getImageData(0,0,trash2.width,trash2.height);
-                        for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
-                          //255,255,0?
-                          /*if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
-                            poseforccl.push(1);
-                          }else{
-                            poseforccl.push(0);
-                          }*/
-                          poseforccl.push(ccl.data[kxc*4]);
-                        }
-                        document.getElementById('log').innerHTML=poseforccl;
 
                         break;
                     case "multi-pose":
@@ -34980,19 +34963,23 @@ parcelRequire = function(e, r, t, n) {
                             scoreThreshold: y.multiPoseDetection.minPartConfidence,
                             nmsRadius: y.multiPoseDetection.nmsRadius
                         });
+                        //anchor
                         d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
-                        ccl=trash.getImageData(0,0,trash2.width,trash2.height);
-                        for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
-                          //255,255,0?
-                          /*if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
-                            poseforccl.push(1);
-                          }else{
-                            poseforccl.push(0);
-                          }*/
-                          poseforccl.push(ccl.data[kxc*4]);
-                        }
-                        document.getElementById('log').innerHTML=poseforccl;
+
                 }
+                let trash=document.getElementById("output").getContext("2d");
+                let trash2=document.getElementById("output");
+                poseforccl=[];
+                for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
+                  //255,255,0?
+                  if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
+                    poseforccl.push(1);
+                  }else{
+                    poseforccl.push(0);
+                  }
+
+                }
+                document.getElementById('log').innerHTML=poseforccl;
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
                     keypoints: t
