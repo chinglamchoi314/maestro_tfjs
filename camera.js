@@ -34970,7 +34970,7 @@ parcelRequire = function(e, r, t, n) {
                 let trash=document.getElementById("output").getContext("2d");
                 let trash2=document.getElementById("output");
                 poseforccl=[];
-                for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
+                /*for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                   //255,255,0?
                   if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
                     poseforccl.push(1);
@@ -34978,7 +34978,7 @@ parcelRequire = function(e, r, t, n) {
                     poseforccl.push(0);
                   }
 
-                }
+                }*/
                 document.getElementById('log').innerHTML=poseforccl;
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
