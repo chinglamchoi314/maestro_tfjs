@@ -34970,6 +34970,7 @@ parcelRequire = function(e, r, t, n) {
                 let trash=document.getElementById("output").getContext("2d");
                 let trash2=document.getElementById("output");
                 poseforccl=[];
+                var ccl=trash.getImageData(0,0,trash2.width,trash2.height);
                 //poseforccl="poseforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl";
                 for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
                   //255,255,0?
