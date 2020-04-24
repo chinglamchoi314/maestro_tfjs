@@ -1,3 +1,7 @@
+var poseforccl=new Array(512*384).fill(2);
+var counter=1;
+var trash2=document.getElementById("output");
+var trash=trash2.getContext("2d");
 parcelRequire = function(e, r, t, n) {
     var i, o = "function" == typeof parcelRequire && parcelRequire,
         u = "function" == typeof require && require;
@@ -34686,7 +34690,7 @@ parcelRequire = function(e, r, t, n) {
             t.getAdjacentKeyPoints(e, n).forEach(t => {
                 w(m(t[0].position), m(t[1].position), r, s, o)
             })
-            document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+"v";
+            document.getElementById('moreloglog').innerHTML=counter;counter+=1;
         }
 
         function P(t, e, n, o = 1) {
@@ -34967,20 +34971,20 @@ parcelRequire = function(e, r, t, n) {
                         d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
 
                 }
-                let trash=document.getElementById("output").getContext("2d");
-                let trash2=document.getElementById("output");
-                poseforccl=[];
-                var ccl=trash.getImageData(0,0,trash2.width,trash2.height);
-                //poseforccl="poseforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl";
-                for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
-                  //255,255,0?
-                  if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
-                    poseforccl.push(1);
-                  }else{
-                    poseforccl.push(0);
+                //poseforccl=[];
+                if (counter%5==0){
+                  var ccl=trash.getImageData(0,0,trash2.width,trash2.height);
+                  //poseforccl="poseforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl";
+                  for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
+                    //255,255,0?
+                    if(ccl.data[kxc*4]==14 && ccl.data[kxc*4+1]==223 && ccl.data[kxc*4+2]==227){
+                      poseforccl[kxc]=1;
+                    }else{
+                      poseforccl[kxc]=0;
+                    }
                   }
-                }
-                document.getElementById('log').innerHTML=poseforccl;
+                  document.getElementById('log').innerHTML=poseforccl;
+              }
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
                     keypoints: t
