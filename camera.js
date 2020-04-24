@@ -34683,7 +34683,15 @@ parcelRequire = function(e, r, t, n) {
         }
 
         function w([t, e], [n, o], r, s, i) {
+          // anchor w
             i.beginPath(), i.moveTo(e * s, t * s), i.lineTo(o * s, n * s), i.lineWidth = a, i.strokeStyle = "#0edfe3", i.stroke()
+            /*poseforccl[e*s*trash2.width+t*s]=1; poseforccl[o*s*trash2.width+n*s]=1;
+            ito.push(e*s*trash2.width+t*s,o*s*trash2.width+n*s]);*/
+            /*if (Math.abs(o-s)>Math.abs(n-t)){
+              //
+            }else{
+              //
+            }*/
         }
 
         function v(e, n, o, s = 1) {
