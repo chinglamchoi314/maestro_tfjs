@@ -1,7 +1,8 @@
-var poseforccl=new Array(512*384).fill(2);
+//var poseforccl=new Array(512*384).fill(4);
 var counter=1;
 var trash2=document.getElementById("output");
 var trash=trash2.getContext("2d");
+var ito=[];
 parcelRequire = function(e, r, t, n) {
     var i, o = "function" == typeof parcelRequire && parcelRequire,
         u = "function" == typeof require && require;
@@ -34684,21 +34685,53 @@ parcelRequire = function(e, r, t, n) {
 
         function w([t, e], [n, o], r, s, i) {
           // anchor w
-            i.beginPath(), i.moveTo(e * s, t * s), i.lineTo(o * s, n * s), i.lineWidth = a, i.strokeStyle = "#0edfe3", i.stroke()
-            /*poseforccl[e*s*trash2.width+t*s]=1; poseforccl[o*s*trash2.width+n*s]=1;
-            ito.push(e*s*trash2.width+t*s,o*s*trash2.width+n*s]);*/
-            /*if (Math.abs(o-s)>Math.abs(n-t)){
-              //
+            document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+" def ";
+            ito.push((Math.round(e*s)+Math.round(t*s)*trash2.width));
+            ito.push((Math.round(o*s)+Math.round(n*s)*trash2.width));
+            //poseforccl[Math.round(e*s*trash2.width+t*s)]=1; poseforccl[Math.round(o*s*trash2.width+n*s)]=1;
+
+            var kx1,kx2,ky1,ky2;
+            if(Math.abs(o-e)>Math.abs(n-t)){
+              if (o < e){
+                  kx1 = Math.round(o*s), kx2 = Math.round(e*s);
+                  ky1 = Math.round(t*s), ky2 = Math.round(n*s);
+              } else {
+                  kx1 = Math.round(e*s), kx2 = Math.round(o*s);
+                  ky1 = Math.round(n*s), ky2 = Math.round(t*s);
+              }
+              document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+" abc ";
+              for (let kx3 = kx1 + 1; kx3 < kx2; kx3++){
+                  let ky3 = Math.round(ky1 + (ky2 - ky1) * (kx3 - kx1) / (kx2 - kx1));
+                  //poseforccl[Math.round(kx3+ky3*trash2.width)]=1;
+                  ito.push(Math.round(kx3+ky3*trash2.width));
+              }
+
             }else{
-              //
-            }*/
+
+              if (t < n){
+                  kx1 = Math.round(o*s), kx2 = Math.round(e*s);
+                  ky1 = Math.round(t*s), ky2 = Math.round(n*s);
+              } else {
+                  kx1 = Math.round(e*s), kx2 = Math.round(o*s);
+                  ky1 = Math.round(n*s), ky2 = Math.round(t*s);
+              }
+              document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+" ghi ";
+              for (let ky3 = ky1 + 1; ky3 < ky2; ky3++){
+
+                  let kx3 = Math.round(kx1 + (kx2 - kx1) * (ky3 - ky1) / (ky2 - ky1));
+                  //poseforccl[Math.round(kx3+ky3*trash2.width)]=1;
+                  ito.push(Math.round(kx3+ky3*trash2.width));
+              }
+            }
+            i.beginPath(), i.moveTo(e * s, t * s), i.lineTo(o * s, n * s), i.lineWidth = a, i.strokeStyle = "#0edfe3", i.stroke()
+
         }
 
         function v(e, n, o, s = 1) {
             t.getAdjacentKeyPoints(e, n).forEach(t => {
                 w(m(t[0].position), m(t[1].position), r, s, o)
             })
-            document.getElementById('moreloglog').innerHTML=counter;counter+=1;
+            document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+counter;counter+=1;
         }
 
         function P(t, e, n, o = 1) {
@@ -34976,11 +35009,12 @@ parcelRequire = function(e, r, t, n) {
                             nmsRadius: y.multiPoseDetection.nmsRadius
                         });
                         //anchor
+
                         d = d.concat(n), i = +y.multiPoseDetection.minPoseConfidence, c = +y.multiPoseDetection.minPartConfidence;
 
                 }
                 //poseforccl=[];
-                if (counter%5==0){
+                /*if (counter%5==0){
                   var ccl=trash.getImageData(0,0,trash2.width,trash2.height);
                   //poseforccl="poseforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl\n\n\nposeforccl";
                   for(var kxc=0;kxc<trash2.width*trash2.height;kxc++){
@@ -34990,9 +35024,17 @@ parcelRequire = function(e, r, t, n) {
                     }else{
                       poseforccl[kxc]=0;
                     }
-                  }
-                  document.getElementById('log').innerHTML=poseforccl;
-              }
+                  }document.getElementById('log').innerHTML=ito;
+
+                }*/
+              document.getElementById('moreloglog').innerHTML=document.getElementById('moreloglog').innerHTML+" update ito "
+              document.getElementById('log').innerHTML=ito;
+              /*for (var kxfi=0; kxfi<ito.length; kxfi++){
+                //you suggest a better  name.
+                poseforccl[ito[kxfi]]=0;
+              }*/
+              ito=[];
+
                 u.clearRect(0, 0, r, s), y.output.showVideo && (u.save(), u.scale(-1, 1), u.translate(-r, 0), u.drawImage(t, 0, 0, r, s), u.restore()), d.forEach(({
                     score: e,
                     keypoints: t
